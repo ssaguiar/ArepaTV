@@ -1,0 +1,26 @@
+<div class="uk-navbar-left" id="search">
+    <a class="material-symbols-rounded uk-padding-small uk-button uk-hidden@m" uk-toggle="offcanvas"> menu </a>
+    <a class="uk-logo uk-visible@m uk-flex" id="logo"> nameHere </a>   
+</div>
+
+<div class="uk-navbar-center" id="search">
+    <a class="material-symbols-rounded uk-padding-small uk-button uk-hidden@m" href="/?type=peliculas"> movie </a>
+    <a class="material-symbols-rounded uk-padding-small uk-button uk-hidden@m" href="/?type=series"> live_tv </a>
+    <!--
+    <a class="material-symbols-rounded uk-padding-small uk-button uk-hidden@m" href="/?type=anime"> workspace_premium </a>
+    -->
+</div>
+
+<div class="uk-navbar-right" id="search">
+    <a class="material-symbols-rounded uk-padding-small uk-button" uk-toggle="target:#search; animation:uk-animation-fade"> search </a>
+</div>
+
+<div class="uk-navbar-left nav-overlay uk-width-expand" id="search" hidden>
+    <div class="uk-width-expand uk-search uk-search-navbar">
+    	<input class="uk-search-input" list="suggest-list" type="search" placeholder="Search" autofocus>
+    </div>
+	<a class="uk-navbar-toggle" uk-toggle="target:#search; animation:uk-animation-fade" href="#" uk-close></a>
+</div>
+
+<!-- Suggest List -->
+<datalist id="suggest-list"></datalist>

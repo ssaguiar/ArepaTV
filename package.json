@@ -1,0 +1,15 @@
+{
+  "name": "onlyplus",
+  "scripts": {
+    "build-web": "browserify ./View/js/main.js | uglifyjs -o ./View/js/bundle.js",
+    "start": "node main"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "cheerio": "^1.0.0-rc.12",
+    "dotenv": "^16.0.1",
+    "lwdb": "^1.0.18",
+    "mollyjs": "^1.0.39",
+    "url": "^0.11.0"
+  }
+}

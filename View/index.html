@@ -1,0 +1,63 @@
+
+<!doctype html>
+<html>
+	<head>
+       
+                <!-- SEO -->
+                <meta charset="utf-8">
+                <meta name="author" content="bececrazy">
+                <meta name="description" content="">
+                <meta name="keywords" content="">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                
+                <!-- UIKIT CDN --> 
+                <script src="https://cdn.jsdelivr.net/npm/uikit@3.14.3/dist/js/uikit.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/uikit@3.14.3/dist/js/uikit-icons.min.js"></script>
+                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.14.3/dist/css/uikit.min.css" />
+                
+                <!-- Google Material Design -->
+                <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+                <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+                <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+                
+                <!-- my Code -->
+                <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+                <link rel="stylesheet" href="./css/theme.css">
+		<title> hello world </title>
+
+                <!-- GOOGLE ANALITICS -->
+                <!-- Global site tag (gtag.js) - Google Analytics -->
+                <script async src="https://www.googletagmanager.com/gtag/js?id=G-W9MYSLBEKG"></script>
+                <script>
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('config', 'G-W9MYSLBEKG');
+                        gtag('js', new Date());
+                </script>
+        
+	</head>
+
+	<body>
+                <component type="movcanvas" 
+                           path="./comp/movieOffCanvas.html"
+                           uk-offcanvas="mode:reveal; overlay:true; flip: true">
+                </component>
+                <component type="offcanvas" 
+                           path="./comp/categoryOffCanvas.html" 
+                           uk-offcanvas="mode:reveal; overlay:true">
+                </component>
+                <component type="modal"
+                           path="./comp/modalPlayer.html"
+                           class="uk-modal-full modal-dark" uk-modal>
+                </component>
+                <component type="main" 
+                           class="uk-flex uk-child-width-expand" 
+                           path="./comp/mainContent" >
+                </component>
+
+                <script src="/_mollyjs_"></script>
+                <script src="./js/bundle.js"></script>  
+                
+	</body>
+	
+</html>
