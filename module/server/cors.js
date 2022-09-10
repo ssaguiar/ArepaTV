@@ -22,7 +22,8 @@ function parseRange( range ){
 /*-------------------------------------------------------------------------------------------------*/
 
 function app(req,res){
-    try {
+    let data; try {
+
         const p = url.parse( req.url,true );
         const q = p.query; 
         
@@ -45,12 +46,10 @@ function app(req,res){
     
         if( req.headers.range ) options.headers.range = parseRange(req.headers.range);
         
-        const data = protocol.request( 
-            options,(response) => {
-                if( response.headers.location )
-                    response.headers.location = response.headers.location.replace(/^http.*:\/\//gi,'?href=')
-                res.writeHead(response.statusCode,response.headers);
-                response.pipe(res);
+        data = protocol.request( options,(response) => { if( response.headers.location )
+            response.headers.location = response.headers.location.replace(/^http.*:\/\//gi,'?href=')
+            res.writeHead(response.statusCode,response.headers);
+            response.pipe(res);
         });
     
         data.on('error',(e)=>{
@@ -62,7 +61,7 @@ function app(req,res){
     } catch(e) {
         res.writeHead(504,{'Content-Type': 'text/html'});
         res.end(`error: ${e?.message}`);
-        console.log(e);
+        console.log(e); data.end();
     }
 }
 
