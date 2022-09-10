@@ -1,0 +1,33 @@
+<!DOCTYPE html> <html lang="es">
+    <head>
+
+        <meta charset="UTF-8">
+        <title>facebook comment</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="/molly.css">
+        <script type="text/javascript" src="/molly.js"></script>
+
+    </head><body>
+         
+        <script>
+            window.fbAsyncInit = function() {
+                FB.init({
+                    appId            : '801583047690103',
+                    version          : 'v14.0',
+                    autoLogAppEvents : true,
+                    xfbml            : true,
+                });
+            };
+        </script>
+
+        /°(()=>{ 
+            const hash = req.query.hash; return ` <div id="fb-root"></div>
+                <div class="fb-comments" data-href="https:///°req.parse.hostname°//#${hash}" data-width="100%" data-numposts="10" data-order-by="time"></div>
+                <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v14.0&appId=801583047690103&autoLogAppEvents=1" nonce="Q0A0DNAt"></script>
+            `;
+        })();°/
+
+    </body>
+</html>

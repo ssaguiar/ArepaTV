@@ -1,0 +1,58 @@
+* {
+    user-zoom: none;
+    font-display: swap; user-select:  none;
+}
+
+@font-face{
+    src: url(../font/Hamer.otf);
+    font-family: hamer; font-display: swap;
+}
+
+h1,h2,h3,.uk-logo {
+    font-family: hamer;
+    margin: 0px; padding: 0px;
+}
+
+#modal>img{ 
+    opacity: 30%; 
+    max-height: 100vh !important;
+}
+
+#movie>img{
+    object-fit: cover;
+    padding: 5px; height: 100%;
+}
+
+.uk-logo{ font-size: 40px; }
+
+[poster]{ object-fit:cover; }
+
+.uk-icon-image{ filter: invert(1); }
+
+.uk-close{ background: transparent; }
+
+.uk-modal-dialog .uk-button {
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-right-color: transparent;
+}
+
+iframe {  
+    background-color: black;
+    width:100vw; height: 100vh;
+}
+
+.uk-modal [active=true]{
+    color: #222 !important;
+    background: white !important;
+}
+
+#temporadaSelector { overflow: scroll; }
+.uk-background-black { background-color: black !important; }
+
+[gradient]{ 
+    height: 100%; max-height: 50vh;
+    background: linear-gradient(0deg, black 80%, transparent);
+}
+
+[overflow-scroll]{ overflow: auto; }

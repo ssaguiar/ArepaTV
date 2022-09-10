@@ -1,0 +1,15 @@
+
+[Unit]
+Description=Node.js Application
+After=syslog.target network.target
+
+[Service]
+User=root
+Type=simple
+WorkingDirectory=/root/ArepaTV
+ExecStart=/usr/bin/nodemon /root/ArepaTV/main.js
+
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

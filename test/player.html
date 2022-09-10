@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+        <link rel="stylesheet" href="bundle.css">
+        <link rel="stylesheet" href="video.css">
+        <script src="bundle.js"></script>
+        <title> Document </title>
+    </head>
+
+    <body>
+
+        <div class="uk-background-secondary">
+            <div class="uk-inline uk-child-width-expand uk-width-expand uk-flex uk-flex-center uk-flex-middle" video-controller>
+
+                <video poster="./thumbnail.webp" video-content></video>
+
+                <div id="controllers" class="uk-position-cover uk-padding-small uk-light uk-inline">
+
+                    <div class="uk-position-top uk-position-small" top-controller>
+                        <a class="uk-padding-small" uk-icon="icon:close; ratio:1;"></a>
+                        <span class="uk-badge uk-danger uk-enphasis"> pelicula </span>
+                        <label> Tren Sin Bala </label>
+                        <div class="uk-position-right">
+                            <span class="uk-badge uk-danger uk-enphasis"> HD 1080p </span>
+                            <a class="uk-padding-small" uk-icon="icon:sr-settings; ratio:1;"></a>
+                        </div>
+                    </div>
+
+                    <div class="uk-position-center" middle-controller>
+                        <a class="uk-padding-small uk-background-danger uk-rounded-large uk-shadow-small" uk-icon="icon:ss-play; ratio:2"></a>
+                    </div>
+
+                    <div class="uk-position-bottom" bottom-controller>
+
+                        <div class="uk-inline uk-padding uk-width-expand">
+                            <div class="uk-position-center-left uk-position-small">
+                                <a class="uk-padding-small" uk-icon="icon:sr-list; ratio:1;"></a>
+                            </div>
+                            <div class="uk-position-center uk-position-small uk-flex">
+                                <a class="uk-padding-small" uk-icon="icon:sr-caret-left; ratio:1;"></a>
+                                <a class="uk-padding-small" uk-icon="icon:sr-pause; ratio:1;"></a>
+                                <a class="uk-padding-small" uk-icon="icon:sr-caret-right; ratio:1;"></a>
+                            </div>
+                            <div class="uk-position-center-right uk-position-small uk-flex">
+                                <a class="uk-padding-small" uk-icon="icon:sr-volume; ratio:1;"></a>
+                                <a class="uk-padding-small" uk-icon="icon:sr-expand; ratio:1;"></a>
+                            </div>
+                        </div>
+
+                        <div class="uk-padding-small uk-padding-remove-vertical uk-flex uk-flex-center uk-flex-middle">
+                            <label class="uk-padding-small uk-padding-remove-left"> 00:00 </label> <a class="uk-width-expand">
+                                <progress class="uk-progress uk-danger uk-margin-remove" value="50" max="100" time-controller></progress>
+                            </a> <label class="uk-padding-small uk-padding-remove-right"> 00:00 </label>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        
+    </body>
+</html>

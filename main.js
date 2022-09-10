@@ -1,13 +1,17 @@
+#!/bin/node
 
 require('dotenv').config();
-const lwdb = require("lwdb");
-const molly = require('mollyjs');
+const worker = require('worker_threads');
 
-process.state = new Object();
-const PathA = `${__dirname}/View`;
-const PathB = `${__dirname}/Controller`;
+/*-------------------------------------------------------------------------------------------------*/
 
-const server = new molly.createBackend( PathA,PathB )
-	.createServer( process.env.PORT );
+const db = new worker.Worker('./module/server/db',{ env: worker.SHARE_ENV });
+db.on('message',()=>{
+    const http = new worker.Worker('./module/server/http',{ env: worker.SHARE_ENV });
+    http.on('message',()=>{
+        const tm = new worker.Worker('./module/server/logs',{ env: worker.SHARE_ENV });
+        const cors = new worker.Worker('./module/server/cors',{ env: worker.SHARE_ENV });
+    });
+});
 
-process.cors = true;
+/*-------------------------------------------------------------------------------------------------*/

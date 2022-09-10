@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <!-- SEO -->
+        /°component('/comp/index/meta.html')°/
+
+        <!--Molly-->
+        <meta name="robots" content="noindex,nofollow">
+        <link rel="canonical" href="https:///°req.parse.hostname°//main" />
+
+    </head>
+
+	<body>
+        
+        <!-------------------------------------------------------------------------------------------------->
+        /°component('./comp/signup/navbar.html')°/
+        
+        <!-------------------------------------------------------------------------------------------------->
+
+        /°(()=>{
+
+            const mail = require('nodemailer');
+            const fetch = require('axios');
+            const url = require('url');
+
+            const search = url.format({
+                query: {
+                    target: req.query.m,
+                    table: 'signup',
+                    db: 'arepatv',
+                }
+            });
+
+            return new Promise((response,reject)=>{
+
+                fetch.get(`http://localhost:27017/match${search}`)
+                .then(({data})=>{
+
+
+                    const transporter = mail.createTransport({
+                        service: 'gmail', auth: {
+                            pass: process.env.EPASS,
+                            user: process.env.EMAIL,
+                        }
+                    });
+
+                    let message = component('./comp/mail/verification.html').toString()
+                        .replace(/LINK/g,`https://arepatv.ml/user/verify?m=${req.query.m}`)
+            
+                    const options = {
+                        subject: 'Verificación - ArepaTV',
+                        from: process.env.EMAIL,
+                        to: data[0].email,
+                        html: message,
+                    };
+
+                    const validator = [
+                        data[0]?.hash != req.query.m,
+                    ].some(x=>{
+                        if(x) response(component('./comp/mail/error.html'));
+                        return x;
+                    }); 
+                    
+                    transporter.sendMail(options,(err,data)=>{
+                        if (!err) 
+                            response(component('./comp/mail/done.html'));
+                            console.log(err);
+                            response(component('./comp/mail/error.html'));
+                    });
+
+                }).catch(e=>{ 
+                    response(component('./comp/mail/error.html'));
+                });
+
+            });
+                   
+        })();°/
+        
+        <!-------------------------------------------------------------------------------------------------->
+        /°component('./comp/index/footer.html')°/
+
+        <script type="text/javascript" src="./js/signup/main.js"></script>
+        
+        <link rel="stylesheet" href="/css/signup.css">
+    </body>
+
+</html>

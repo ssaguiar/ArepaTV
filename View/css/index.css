@@ -1,0 +1,73 @@
+* {
+    font-display: swap;
+    user-select:  none;
+    user-zoom: none;
+}
+
+@font-face{
+    font-family: hamer;
+    font-display: swap;
+    src: url(../font/Hamer.otf);
+}
+
+hr{ padding: 0px; margin: 0px; }
+.uk-text-large, .uk-badge, .uk-card-badge { font-family: hamer; letter-spacing: 1px; }
+
+h1,h2,h3,.uk-logo {
+    font-family: hamer !important;
+    color: white !important;
+}
+
+.uk-logo{ font-size: 40px !important; }
+
+h1,h2,h3,h4,h5,h6{
+    margin: 0px;
+    padding: 0px;
+}
+
+[services] img{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50px;
+}
+
+.uk-list li{ margin:0px !important; }
+
+[shadow],.uk-card,[services] img {
+    filter: drop-shadow(2px 4px 6px black);
+}
+
+[main]{
+    background: url(../img/index/banner.webp) center/cover;
+}
+
+[scrollable]{
+    overflow: auto;
+}
+
+.uk-primary {
+    background: linear-gradient( 45deg, var( --color-primary ), var( --color-danger ) ) !important;
+}.uk-button.uk-primary{
+    background: var( --color-primary ) !important;
+}.uk-text.uk-primary{
+    background: transparent !important;
+}
+
+.uk-background-default *{ 
+    padding: 10px;
+    color: black !important; 
+}
+
+/*-----------------------------------------------------------------------*/
+
+/*-----------------------------------------------------------------------*/
+
+/°(()=>{
+    resp = new String();
+    for( var i=6; i--; ){
+        resp += `
+            h${i}{ font-size: ${(6-i)*10}px !important; }
+        `;
+    }   return resp
+})();°/

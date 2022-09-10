@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <!-- SEO -->
+        /°component('/comp/index/meta.html')°/
+        
+        <!--Molly-->
+        <meta name="robots" content="noindex,nofollow">
+        <link rel="canonical" href="https:///°req.parse.hostname°//unavailable" />
+
+    </head>
+
+	<body class="uk-background-secondary uk-light">
+        
+        <!-------------------------------------------------------------------------------------------------->
+        <div class="uk-height-expand uk-flex uk-flex-column uk-flex-center uk-flex-middle uk-text-center">
+            <h1> This page is not available in your country </h1> <div id="alert"> </div>
+        </div>
+        <!-------------------------------------------------------------------------------------------------->
+        
+        <script>(()=>{
+            if( query.get('m') ){
+                const message = atob(query.get('m')).split('|');
+                $('#alert').innerHTML = `
+                    <Strong>TimeZone</Strong> ${message[0]} |
+                    <Strong>Contry</Strong> ${message[1]}
+                `;
+            } else window.location = '/';
+        })();</script>
+
+        <link rel="stylesheet" href="/css/index.css">
+    </body>
+
+</html>

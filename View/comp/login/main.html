@@ -1,0 +1,22 @@
+<div class="uk-padding-large uk-flex uk-flex-center uk-flex-middle uk-flex-column uk-height-expand">
+
+    <div class="uk-overlay uk-width-1-3@m">
+
+        <form action="./user/login" method="POST" class="uk-child-width-expand" onsubmit="stepOne(event)">
+            <h2> Iniciar Sesión </h2> <hr><br>
+            <span alert></span>
+            <input class="uk-input" name="hash" type="text" value="" hidden>
+            <input class="uk-input" name="email" type="email" placeholder="Email" required> <br><br>
+            <input class="uk-input" name="pass" type="password" placeholder="Contraseña" required> <br><br>
+            <hr><br>
+            <button class="uk-button uk-primary uk-enphasis" type="submit"> Iniciar Sesión </button>
+        </form>
+
+        <p class="uk-padding-small uk-padding-remove-horizontal uk-text-justify uk-text-small">
+            ¿Primera vez en ArepaTV? <a class="uk-button uk-text uk-primary" href="./signup">Suscríbete ahora</a>.
+        </p>
+
+    </div>
+    
+
+</div>

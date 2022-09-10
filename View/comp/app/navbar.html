@@ -1,0 +1,49 @@
+<header uk-sticky >
+    <nav class="uk-navbar-container uk-secondary uk-padding-small uk-padding-remove-vertical" id="search" uk-navbar>
+    
+        <div class="uk-navbar-left">
+            <a class="uk-navbar-item uk-button" uk-toggle="offcanvas">
+                <i class="uk-icon" uk-icon="icon:menu" ></i>
+            </a> <ul class="uk-visible@m uk-flex uk-navbar-nav ">
+                <li><a class="uk-button" href="?type=peliculas"> <span>peliculas</span> </a></li>
+                <li><a class="uk-button" href="?type=novelas"> <span>novelas</span> </a></li>
+                <li><a class="uk-button" href="?type=series"> <span>series</span> </a></li>
+                /°(()=>{ if( req.query.type != 'porno' ) return '';
+                    return `<li><a class="uk-button" href="?type=porno"> <span>porno</span> </a></li>`;
+                })()°/
+            </ul>
+        </div>
+        
+        <div class="uk-navbar-center">
+            <a class="uk-navbar-item uk-margin-remove uk-logo" href="/app?type=/°
+                (()=>{ 
+                    if( !req.query.type )
+                        return 'peliculas'
+                    return req.query.type 
+                })();
+            °/"> ArepaTV </a>
+        </div>
+        
+        <div class="uk-navbar-right">
+            <a class="uk-navbar-item uk-button" uk-toggle="target:#search; animation:uk-animation-fade">
+                <i class="uk-icon" uk-icon="icon:search" ></i>
+            </a>
+        </div>
+    
+    </nav>
+    
+    <nav class="uk-navbar-container uk-secondary uk-padding-small uk-padding-remove-vertical" id="search" uk-navbar hidden>
+        
+        <div class="uk-navbar-left uk-width-expand uk-child-width-expand">
+            <div class="uk-navbar-item uk-search uk-search-navbar">
+                <input class="uk-search-input" list="suggest-list" type="search" placeholder="Search" autofocus>
+                <div class="uk-width-expand uk-child-width-expand" uk-dropdown> <ul class="uk-nav uk-dropdown-nav" id="suggest-list"></ul> </div>
+            </div>
+        </div>
+    
+        <div class="uk-navbar-right">
+            <a class="uk-navbar-item uk-icon" uk-icon="icon:close" uk-toggle="target:#search; animation:uk-animation-fade"></a>
+        </div>
+    
+    </nav>
+</header>

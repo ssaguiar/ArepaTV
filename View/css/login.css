@@ -1,0 +1,42 @@
+* {
+    font-display: swap;
+    user-select:  none;
+    user-zoom: none;
+}
+
+@font-face{
+    font-family: hamer;
+    font-display: swap;
+    src: url(../font/Hamer.otf);
+}
+
+hr{ padding: 0px; margin: 0px; }
+
+h1,h2,h3,.uk-logo {
+    font-family: hamer !important;
+    color: white !important;
+}
+
+.uk-logo{ font-size: 40px !important; }
+
+h1,h2,h3,h4,h5,h6{
+    margin: 0px;
+    padding: 0px;
+}
+
+.uk-list li{ margin:0px !important; }
+.uk-overlay,footer{ background-color: rgba(0, 0, 0, 0.8) !important; }
+body{ background: url(../img/index/banner.webp) center/cover !important; }
+
+/*-----------------------------------------------------------------------*/
+
+/*-----------------------------------------------------------------------*/
+
+/°(()=>{
+    resp = new String();
+    for( var i=6; i--; ){
+        resp += `
+            h${i}{ font-size: ${(6-i)*10}px !important; }
+        `;
+    }   return resp
+})();°/

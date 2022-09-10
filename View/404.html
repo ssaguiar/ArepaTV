@@ -6,28 +6,26 @@
         /°component('/comp/index/meta.html')°/
         
         <!--Molly-->
-        <link rel="canonical" href="https:///°req.parse.hostname°//" />
+        <meta name="robots" content="noindex,nofollow">
+        <link rel="canonical" href="https:///°req.parse.hostname°//404" />
 
     </head>
 
 	<body class="uk-background-secondary uk-light">
         
         <!-------------------------------------------------------------------------------------------------->
-        /°component('./comp/index/navbar.html')°/
+        /°component('comp/login/navbar.html')°/
 
         <!-------------------------------------------------------------------------------------------------->
-        /°component('./comp/index/main.html')°/
-        
+        <div class="uk-height-expand uk-flex uk-flex-column uk-flex-center uk-flex-middle">
+            <h1> Oops 404 Error: Pagina no encontrada </h1>
+        </div>
         <!-------------------------------------------------------------------------------------------------->
-        /°component('./comp/index/planes.html')°/
-        
-        <!-------------------------------------------------------------------------------------------------->
-        /°component('./comp/index/preguntas.html')°/
         
         <!-------------------------------------------------------------------------------------------------->
         /°component('./comp/index/footer.html')°/
         
-        <link rel="stylesheet" href="/css/index.css">
+        <link rel="stylesheet" href="/css/login.css">
     </body>
 
 </html>

@@ -1,0 +1,5 @@
+Allow: /
+User-agent: *
+Disallow: /play
+User-agent: Googlebot
+Sitemap: https:///°req.parse.hostname°//sitemap.xml

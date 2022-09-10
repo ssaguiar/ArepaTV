@@ -1,0 +1,3 @@
+addEvent(window,'start',()=>{
+    
+});

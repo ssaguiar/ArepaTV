@@ -1,0 +1,23 @@
+<!------------------------------------------------------------------------------------->
+<form action="/signup/user" method="POST"
+      class="uk-padding-large uk-flex uk-flex-center uk-flex-middle uk-flex-column uk-height-expand">
+    <h2> Crea tu Usuario </h2>
+    <div class="uk-child-width-expand uk-child-margin">
+        
+        <div alert></div>
+
+        <div class="uk-flex uk-child-width-1-2">
+            <input required type="text" name="firstname" placeholder="Nombre" class="uk-input">
+            <input required type="text" name="lastname" placeholder="Apellido" class="uk-input">
+        </div>
+
+        <input required type="text" name="user" placeholder="Nombre de Usuario" class="uk-input">
+        <input required type="email" name="email" placeholder="Email" class="uk-input">
+        <input required type="password" name="pass" placeholder="Contraseña" class="uk-input">
+        <input required type="password" name="conf" placeholder="Contraseña" class="uk-input">
+
+        <input required type="submit" class="uk-button uk-primary uk-enphasis" value="Registrarse">
+
+    </div>
+</form>
+

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        
+        <video controls autoplay preload></video>
+        <script>(async()=>{
+            const buffer = new Array();
+            for( var i=0; i<2; i++ ){
+                const range = [ i*(Math.pow(10,6)*10+1), (i+1)*Math.pow(10,6)*10 ];
+                const data = await fetch("https://www2142.ff-05.com/token=nC3OC_MDh1lj2-ecJ1iYHQ/1662706154/200.8.0.0/209/6/ed/8d9423e7bf1fbc166e7c231bb302eed6-480p.mp4", {
+                    "method": "GET", "headers": { "range": `bytes=${range[0]}-${range[1]}` }
+                });  buffer.push( await data.arrayBuffer() );
+            }
+            const blob = new Blob(buffer);
+            document.querySelector('video').src = URL.createObjectURL(blob);
+        })()
+        </script>
+
+
+    </body>
+</html>

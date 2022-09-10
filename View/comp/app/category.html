@@ -1,0 +1,27 @@
+<offcanvas uk-offcanvas="mode:reveal; overlay:true">
+    <div class="uk-offcanvas-bar">
+    	<button class="uk-offcanvas-close" type="button" uk-close></button>
+        <ul id="category" class="uk-list uk-list-divider" overflow-scroll>
+            <li> <a class="uk-button"  href="?type=peliculas">Peliculas</a> </li>
+            <li> <a class="uk-button"  href="?type=novelas">novelas</a> </li>
+            <li> <a class="uk-button"  href="?type=series">Series</a> </li>
+            /°(()=>{ if( req.query.type != 'porno' ) return '';
+                return `<li> <a class="uk-button"  href="?type=porno">Porno</a> </li>`;
+            })()°/
+            <li></li> /°(()=>{
+                try{
+                    
+                    const fs = require('fs');
+
+                    const type = req.query.type || 'peliculas';
+                    const path = `${process.cwd()}/View/csv/${type}.csv`;
+                    
+                    return fs.readFileSync( path ).toString().split('|').map(x=>{
+                        return ` <li><a href="?type=${type}&filter=${x}">${x}</a></li> `;
+                    }).join('');
+
+                } catch(e) { return '' }
+            })()°/
+        </ul>
+    </div>
+</offcanvas>
