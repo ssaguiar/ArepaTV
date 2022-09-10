@@ -47,7 +47,7 @@ function app(req,res){
 
         fetch(options).then(response=>{
             res.writeHead(response.status,response.headers);
-            response.pipe(res);
+            response.data.pipe(res);
         }).catch(e=>{
             res.writeHead(504,{'Content-Type': 'text/html'});
             res.end(`error: ${e?.message}`);
