@@ -51,13 +51,13 @@ function app(req,res){
         }).catch(e=>{
             res.writeHead(504,{'Content-Type': 'text/html'});
             res.end(`error: ${e?.message}`);
-            console.log(e);
+            console.log(e?.message);
         });
 
     } catch(e) {
         res.writeHead(504,{'Content-Type': 'text/html'});
         res.end(`error: ${e?.message}`);
-        console.log(e);
+        console.log(e?.message);
     }
 }
 
