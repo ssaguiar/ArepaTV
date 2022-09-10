@@ -8,7 +8,7 @@ const worker = require('worker_threads');
 
 /*-------------------------------------------------------------------------------------------------*/
 
-const numCPUs = os.cpus().length * 20;
+const numCPUs = os.cpus().length * 2;
 const size = Math.pow(10,6) * 3;
 const PORT = 4000; 
 
