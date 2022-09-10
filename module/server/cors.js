@@ -22,44 +22,48 @@ function parseRange( range ){
 /*-------------------------------------------------------------------------------------------------*/
 
 function app(req,res){
-
-    const p = url.parse( req.url,true );
-    const q = p.query; 
+    try {
+        const p = url.parse( req.url,true );
+        const q = p.query; 
+        
+        const _prt = q.type || 'https';
+        const _url = `${_prt}://${q.href}`;
+        const port = (/https/gi).test(_url) ? 443 : 80;
+        const protocol = (/https/gi).test(_url) ? https : http;
     
-    const _prt = q.type || 'https';
-    const _url = `${_prt}://${q.href}`;
-    const port = (/https/gi).test(_url) ? 443 : 80;
-    const protocol = (/https/gi).test(_url) ? https : http;
-
-    const options = url.parse(_url);
-          options.agent = protocol.Agent({ rejectUnauthorized: false });
-          options.method = 'GET';
-          options.port = port;
-          options.headers = {
-              'sec-ch-ua-platform': req.headers['sec-ch-ua-platform'],
-              'sec-ch-ua-mobile': req.headers['sec-ch-ua-mobile'],
-              'user-agent': req.headers['user-agent'],
-              'sec-ch-ua': req.headers['sec-ch-ua'],
-              referer: _url,
-          };
-
-    if( req.headers.range ) options.headers.range = parseRange(req.headers.range);
+        const options = url.parse(_url);
+              options.agent = protocol.Agent({ rejectUnauthorized: false });
+              options.method = 'GET';
+              options.port = port;
+              options.headers = {
+                  'sec-ch-ua-platform': req.headers['sec-ch-ua-platform'],
+                  'sec-ch-ua-mobile': req.headers['sec-ch-ua-mobile'],
+                  'user-agent': req.headers['user-agent'],
+                  'sec-ch-ua': req.headers['sec-ch-ua'],
+                  referer: _url,
+              };
     
-    const data = protocol.request( 
-        options,(response) => {
-            if( response.headers.location )
-                response.headers.location = response.headers.location.replace(/^http.*:\/\//gi,'?href=')
-            res.writeHead(response.statusCode,response.headers);
-            response.pipe(res);
-    });
+        if( req.headers.range ) options.headers.range = parseRange(req.headers.range);
+        
+        const data = protocol.request( 
+            options,(response) => {
+                if( response.headers.location )
+                    response.headers.location = response.headers.location.replace(/^http.*:\/\//gi,'?href=')
+                res.writeHead(response.statusCode,response.headers);
+                response.pipe(res);
+        });
+    
+        data.on('error',(e)=>{
+            res.writeHead(504,{'Content-Type': 'text/html'});
+            res.end(`error: ${e?.message}`);
+            console.log(e);
+        }); data.end();
 
-    data.on('error',(e)=>{
+    } catch(e) {
         res.writeHead(504,{'Content-Type': 'text/html'});
         res.end(`error: ${e?.message}`);
-    });
-
-    data.end();
-
+        console.log(e);
+    }
 }
 
 /*-------------------------------------------------------------------------------------------------*/
