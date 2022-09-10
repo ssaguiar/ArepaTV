@@ -41,7 +41,7 @@ function app(req,res){
                   'user-agent': req.headers['user-agent'],
                   'sec-ch-ua-mobile': req.headers['sec-ch-ua-mobile'],
                   'sec-ch-ua-platform': req.headers['sec-ch-ua-platform'],
-              };  options.agent = protocol.Agent({ rejectUnauthorized: false });
+              };  options.agent = new protocol.Agent({ rejectUnauthorized: false });
     
         if( req.headers.range ) options.headers.range = parseRange(req.headers.range);
 
