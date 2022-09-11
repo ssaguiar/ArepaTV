@@ -10,6 +10,7 @@ const worker = require('worker_threads');
 
 process.molly.iframe = 'sameorigin';
 process.molly.strict = true;
+process.molly.threads = 1;
 const PORT = 3000;
 
 /*-------------------------------------------------------------------------------------------------*/

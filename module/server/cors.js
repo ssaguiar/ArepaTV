@@ -8,7 +8,7 @@ const worker = require('worker_threads');
 
 /*-------------------------------------------------------------------------------------------------*/
 
-const numCPUs = os.cpus().length * 2;
+const threads = os.cpus().length * 2;
 const size = Math.pow(10,6) * 3;
 const PORT = 4000; 
 
@@ -64,7 +64,7 @@ function app(req,res){
 /*-------------------------------------------------------------------------------------------------*/
 
 if ( cluster.isPrimary ) {
-    for ( let i = 0; i < numCPUs; i++ ) { cluster.fork();
+    for ( let i=threads; i--; ) { cluster.fork();
     } cluster.on('exit', (worker, code, signal)=>{ cluster.fork();
         console.log(`worker ${worker.process.pid} died by: ${code}`);
     });
@@ -75,4 +75,3 @@ if ( cluster.isPrimary ) {
 }
 
 /*-------------------------------------------------------------------------------------------------*/
-
