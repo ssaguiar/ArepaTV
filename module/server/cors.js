@@ -64,15 +64,12 @@ function app(req,res){
 /*-------------------------------------------------------------------------------------------------*/
 
 if ( cluster.isPrimary ) {
-
     for ( let i = 0; i < numCPUs; i++ ) { cluster.fork();
     } cluster.on('exit', (worker, code, signal)=>{ cluster.fork();
         console.log(`worker ${worker.process.pid} died by: ${code}`);
     });
-
 } else {
     http.createServer(app).listen(PORT,'0.0.0.0',()=>{
-        console.log(`listening -> http://localhost:${PORT}`);
         if( !worker.isMainThread ) worker.parentPort.postMessage('done');
     });
 }

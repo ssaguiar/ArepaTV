@@ -1,0 +1,35 @@
+[video-controller]{
+    height: 100vh;
+    max-height: 100vh;
+}
+
+[video-content]{
+    object-fit: fill;
+    max-height: 100vh;
+}
+
+[top-controller]{
+
+}
+
+[middle-controller]{
+
+}
+
+[bottom-controller]{
+    background: linear-gradient( 0deg, black 20%, transparent );
+}
+
+[volume-controller]{
+    width: 80%
+}
+
+/*añadir*//*
+input[type=range][orientation=vertical]
+{
+    -webkit-appearance: slider-vertical;
+    writing-mode: bt-lr;
+    padding: 0 5px;
+    width: 20px;
+}
+*/

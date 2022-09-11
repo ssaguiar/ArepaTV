@@ -68,7 +68,17 @@ const url = require('url');
 
 db.connect(process.env.MONGO); const USER = db.models.users;
 function loadMovie( _url,_type ){
-    return require(`${process.cwd()}/module/scraper/${_type}`)( _url );
+    return new Promise((response,reject)=>{
+        fetch({ method: 'POST', 
+            data: JSON.stringify({
+                url:_url, type:_type
+            }), url: 'http://localhost:27018',
+        }).then(({data})=>{
+            response(data);
+        }).catch((e)=>{
+            reject(e?.message);
+        });
+    });
 }
 
 function responseMovie( req,res,user ){

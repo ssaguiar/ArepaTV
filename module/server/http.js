@@ -9,7 +9,6 @@ const worker = require('worker_threads');
 /*-------------------------------------------------------------------------------------------------*/
 
 process.molly.iframe = 'sameorigin';
-process.molly.maxAge = 60 * 24;
 process.molly.strict = true;
 const PORT = 3000;
 

@@ -23,7 +23,6 @@ function calculateInterval(){
 }
 
 function main( callback ){
-    calculateInterval();
-    clearTimeout( interval );
+    calculateInterval(); clearTimeout( interval );
     interval = setTimeout(callback,timeout);
 };  main( event );
