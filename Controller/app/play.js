@@ -61,12 +61,10 @@ const template = `
 
 const molly = require('molly-js');
 const fetch = require('axios');
-const db = require('mongoose');
 const url = require('url');
 
 /*-------------------------------------------------------------------------------------------------*/
 
-db.connect(process.env.MONGO); const USER = db.models.users;
 function loadMovie( _url,_type ){
     return new Promise((response,reject)=>{
         fetch({ method: 'POST', 
@@ -122,15 +120,20 @@ module.exports = (req,res)=>{
 
     const auth = req.parse.cookie?.auth;
     console.log( req.url, req.parse.ip );
-    if( auth ) USER.findOne({hash:auth},(err,data)=>{
 
-        if( err || !data || !data?.hash )
-            return res.send(404,script);
+    if( auth ) 
+        fetch({ method: 'POST', data: JSON.stringify({hash:auth}),
+            url: 'http://localhost:27019/hash', responseType: 'json'
+        }).then(({data})=>{
 
-        responseMovie( req,res,data )
-        .then((data)=>res.send(200,data))
-        .catch((e)=>{ res.send(404,e); console.log(e) })
+            if( !data || !data?.hash )
+                return res.send(404,script);
 
-    }); else return res.send(404,script);
+            responseMovie( req,res,data )
+            .then((data)=>res.send(200,data))
+            .catch((e)=>{ res.send(404,e); console.log(e) })
+
+        }).catch((err)=>{ res.send(404,script) })
+    else return res.send(404,script);
 
 }

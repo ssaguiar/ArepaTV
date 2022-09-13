@@ -21,13 +21,16 @@
         
         <script>(()=>{
             if( query.get('m') ){
-                const message = atob(query.get('m')).split('|');
-                $('#alert').innerHTML = `
+                const message = atob(query.get('m')).split('|'); $('#alert').innerHTML = `
                     <Strong>TimeZone</Strong> ${message[0]} |
                     <Strong>Contry</Strong> ${message[1]}
                 `;
             } else window.location = '/';
         })();</script>
+
+        <!-------------------------------------------------------------------------------------------------->
+        <script type="text/javascript"> /°component('/js/security/main.js')°/ </script>
+        <!-------------------------------------------------------------------------------------------------->
 
         <link rel="stylesheet" href="/css/index.css">
     </body>

@@ -14,7 +14,7 @@
     "cheerio": "^1.0.0-rc.12",
     "dotenv": "^16.0.1",
     "molly-db": "^1.0.17",
-    "molly-js": "^1.0.61",
+    "molly-js": "^1.0.64",
     "mongoose": "^6.5.4",
     "nodemailer": "^6.7.8",
     "ws": "^8.8.1"

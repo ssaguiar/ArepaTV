@@ -1,3 +1,0 @@
-addEvent(window,'start',()=>{
-    
-});

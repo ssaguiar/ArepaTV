@@ -1,4 +1,4 @@
-
+/°component('./js/security/main.js');°/
 
 function temporadaSelector(){
     const selector = $$('#selector');

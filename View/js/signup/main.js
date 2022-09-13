@@ -1,3 +1,5 @@
+/°component('./js/security/main.js');°/
+
 function stepOne( ev ){
 
     ev.preventDefault();
@@ -13,8 +15,6 @@ function stepOne( ev ){
     ).toString();
 
     $('input[name=hash]').value = object.hash;
-    window.cookieStore.set('auth',object.hash);
-
     ev.target.submit();
 
 }

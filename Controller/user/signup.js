@@ -2,14 +2,9 @@ const crypto = require('crypto-js');
 const {Buffer} = require('buffer');
 const molly = require('molly-js');
 const fetch = require('axios');
-const db = require('mongoose');
 const url = require('url');
 
 /*-------------------------------------------------------------------------------------------------*/
-
-const signup = '?table=signup&db=arepatv';
-db.connect(process.env.MONGO);
-const USER = db.models.users;
 
 const e = [
     //Correo doble
@@ -20,7 +15,7 @@ const e = [
     'bGFzIGNvbnRyYXNl8WFzIG5vIGNvaW5jaWRlbg==',
     //contraseña debil
     'Y29udHJhc2XxYSBtdXkgY29ydGE'
-];
+];  const signup = '?table=signup&db=arepatv';
 
 /*-------------------------------------------------------------------------------------------------*/
 
@@ -83,10 +78,12 @@ function validateUser( query ){
             query.pass.toLowerCase() 
         ).toString();
 
-        USER.findOne({ email:query.email },(err,data)=>{
+        fetch({ method: 'POST', data: JSON.stringify({email:query.email}),
+            url: 'http://localhost:27019/mail', responseType: 'json'
+        }).then(({data})=>{
             
             validator = [// Validador de Usuarios
-                [ err, e[1] ], [ query.email == data?.email, e[0]],
+                [ query.email == data?.email, e[0]],
             ]; for( var i in validator ){
                 if( validator[i][0] ) return reject(validator[i][1]);
             }
@@ -95,7 +92,7 @@ function validateUser( query ){
             saveUser( query ).then(()=>{ response( query.hash );
             }).catch((err)=>{ reject(e[1]) });
 
-        });
+        }).catch((err)=>{ reject(e[1]) });
 
     });
 }

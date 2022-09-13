@@ -1,3 +1,4 @@
+/°component('./js/security/main.js');°/
 
 function stepOne( ev ){
 

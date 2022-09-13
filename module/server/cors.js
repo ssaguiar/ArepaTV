@@ -45,14 +45,20 @@ function app(req,res){
     
         if( req.headers.range ) options.headers.range = parseRange(req.headers.range);
 
-        fetch(options).then(response=>{
-            res.writeHead(response.status,response.headers);
-            response.data.pipe(res);
-        }).catch(e=>{
-            res.writeHead(504,{'Content-Type': 'text/html'});
-            res.end(`error: ${e?.message}`);
-            console.log(e?.message);
-        });
+        if( (/audio|video/i).test(req.query.type) && !range ){
+			res.writeHead( 200,{ 'Content-Type': req.query.type }); res.end();
+        } else {
+
+            fetch(options).then(response=>{
+                res.writeHead(response.status,response.headers);
+                response.data.pipe(res);
+            }).catch(e=>{
+                res.writeHead(504,{'Content-Type': 'text/html'});
+                res.end(`error: ${e?.message}`);
+                console.log(e?.message);
+            });
+
+        }
 
     } catch(e) {
         res.writeHead(504,{'Content-Type': 'text/html'});
