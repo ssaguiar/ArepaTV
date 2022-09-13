@@ -28,7 +28,7 @@ function app(req,res){
         const p = url.parse( req.url,true );
         const q = p.query; 
         
-        const _prt = q.type || 'https';
+        const _prt = q?.prot || 'https';
         const _url = `${_prt}://${q.href}`;
         const protocol = (/https/gi).test(_url) ? https : http;
     
@@ -45,8 +45,8 @@ function app(req,res){
     
         if( req.headers.range ) options.headers.range = parseRange(req.headers.range);
 
-        if( (/audio|video/i).test(req.query.type) && !range ){
-			res.writeHead( 200,{ 'Content-Type': req.query.type }); res.end();
+        if( (/audio|video/i).test(q?.type) && !range ){
+			res.writeHead( 200,{ 'Content-Type': q.type }); res.end();
         } else {
 
             fetch(options).then(response=>{
