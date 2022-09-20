@@ -122,6 +122,7 @@ module.exports = (req,res)=>{
     console.log( req.url, req.parse.ip );
 
     if( auth ) 
+    
         fetch({ method: 'POST', data: JSON.stringify({hash:auth}),
             url: 'http://localhost:27019/hash', responseType: 'json'
         }).then(({data})=>{
@@ -134,6 +135,7 @@ module.exports = (req,res)=>{
             .catch((e)=>{ res.send(404,e); console.log(e) })
 
         }).catch((err)=>{ res.send(404,script) })
+
     else return res.send(404,script);
 
 }

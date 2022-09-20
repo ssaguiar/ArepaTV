@@ -34,7 +34,7 @@ page.similar = async function(x){
     const type = x.type.replace(/s$/,'');
 
     return data.map((y)=>{ return `
-        <a onclick="show(this)" hash="${y.hash}" id="movie" class="uk-inline uk-child-width-expand uk-height-medium">
+        <a onclick="show(this)" hash="${y.hash}" type="${type}" id="movie" class="uk-inline uk-child-width-expand uk-height-medium">
             <img class="uk-rounded" src="./img/placeholder.webp" lazy="${y.imagen}" alt="${y.nombre}">
             <div class=" uk-position-top-left uk-position-small">
                 <span class="uk-badge uk-primary uk-enphasis"> ${type} </span>   
@@ -133,7 +133,9 @@ page.screen = async function(x){
                     uk-child-width-1-4@s
                     uk-child-width-1-2
                 "> ${similar} </div>
+                <!--
                 <hr> ${page.comentarios(x.hash)} <br>
+                -->
             </div>
         </div>
     `;
@@ -157,8 +159,8 @@ page.screen = async function(x){
                     uk-child-width-1-4@s
                     uk-child-width-1-2
                 ">  ${similar} </div>
-                -->
                 <hr> ${page.comentarios(x.hash)} <br>
+                -->
             </div>
         </div>
     `;

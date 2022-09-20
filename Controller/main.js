@@ -60,13 +60,18 @@ function userValidator(req,res){
 /*-------------------------------------------------------------------------------------------------*/
 
 module.exports = (req,res,protocol)=>{
-    try{ return new Promise((response,reject)=>{
-        console.log( req.url, req.parse.ip );
-        regionValidator(req,res).then((e)=>{reponse(e)})
-        .catch((e)=>{ 
-            if(!(/app/i).test(req.parse.pathname)) 
-                return reject(e); userValidator(req,res)
-            .then((e)=>{response(e)}).catch((e)=>{reject(e)})
-        }); 
-    })} catch(e){ reject(e) }
+    return new Promise((response,reject)=>{
+        try{
+
+            console.log( req.url, req.parse.ip );
+
+            regionValidator(req,res).then((e)=>{reponse(e)})
+            .catch((e)=>{ 
+                if(!(/app/i).test(req.parse.pathname)) 
+                    return reject(e); userValidator(req,res)
+                .then((e)=>{response(e)}).catch((e)=>{reject(e)})
+            }); 
+
+        } catch(e){ reject(e) }    
+    }) 
 }

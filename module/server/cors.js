@@ -6,6 +6,18 @@ const fetch = require('axios');
 const cluster = require('cluster');
 const worker = require('worker_threads');
 
+const defaultHeader = {
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+    'User-Agent': 'Mozilla/5.0 (X11; CrOS x86_64 15054.50.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Safari/537.36',
+    'sec-ch-ua': '"Chromium";v="106", "Google Chrome";v="106", "Not;A=Brand";v="99"',
+    'Accept-Language': 'es-419,es;q=0.9', 'sec-ch-ua-platform': '"Chrome OS"',
+    'Upgrade-Insecure-Requests': '1', 'Sec-Fetch-Dest': 'document',
+    'Sec-Fetch-Mode': 'navigate', 'Cache-Control': 'no-cache',
+    'Connection': 'keep-alive', 'Sec-Fetch-Site': 'none',
+    'sec-ch-ua-mobile': '?0', 'Sec-Fetch-User': '?1',
+    'Pragma': 'no-cache',
+}
+
 /*-------------------------------------------------------------------------------------------------*/
 
 const threads = os.cpus().length * 2;
@@ -37,10 +49,10 @@ function app(req,res){
               options.method = 'GET';
               options.responseType = 'stream';
               options.headers = { referer: _url,
-                  'sec-ch-ua': req.headers['sec-ch-ua'],
-                  'user-agent': req.headers['user-agent'],
-                  'sec-ch-ua-mobile': req.headers['sec-ch-ua-mobile'],
-                  'sec-ch-ua-platform': req.headers['sec-ch-ua-platform'],
+                  'sec-ch-ua': req.headers['sec-ch-ua'] || defaultHeader['sec-ch-ua'],
+                  'user-agent': req.headers['user-agent'] || defaultHeader['user-agent'],
+                  'sec-ch-ua-mobile': req.headers['sec-ch-ua-mobile'] || defaultHeader['sec-ch-ua-mobile'],
+                  'sec-ch-ua-platform': req.headers['sec-ch-ua-platform'] || defaultHeader['sec-ch-ua-platform'],
               };  options.agent = new protocol.Agent({ rejectUnauthorized: false });
     
         if( req.headers.range ) options.headers.range = parseRange(req.headers.range);

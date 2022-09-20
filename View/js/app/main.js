@@ -16,31 +16,27 @@ function temporadaSelector(){
 }
 
 function clearMovieModal( ..._el ){
-    UIkit.modal(_el[0]).show();
-    _el[1].innerHTML = `
+    UIkit.modal(_el[0]).show(); _el[1].innerHTML = `
         <div class="uk-primary uk-position-center" uk-spinner="ratio: 3"></div>
     `;
 }
 
 function show( _el ){
 
+    $('input[type=search]').value = "";
+
     clearMovieModal( $('modal'),$('#modal') );
     const hash = _el.getAttribute('hash');
+    const type = _el.getAttribute('type');
     const search = new URLSearchParams();
 
-    if( !query.get('type') )
-        search.set('type','peliculas');
-    else
-        search.set('type',query.get('type'));
-        search.set('filter',hash);
+    search.set('filter',hash);
+    search.set('type',type);
 
-    fetch('/app/hash?'+search.toString())
-    .then(async(res)=>{
+    fetch('/app/hash?'+search.toString()).then(async(res)=>{
         $('#modal').innerHTML = await res.text();
         temporadaSelector();
-    }).catch(e=>{
-        console.error(e);
-    })
+    }).catch(e=>{ console.error(e) })
 
 }
 
@@ -71,13 +67,11 @@ function loadContent(_el,result){
 
 function loadMore(){
 
-    if( window.isLoading )
-        return undefined;
-    
-    window.isLoading = true;
+    if( window.isLoading )  return undefined;
+        window.isLoading = true;
 
-    const search = new URLSearchParams();
     const offset = $$('#movie').length;
+    const search = new URLSearchParams();
 
     if( query.get('filter') ) search.set('filter',query.get('filter'));
         search.set('type',query.get('type')||'peliculas');
@@ -95,27 +89,30 @@ function loadMore(){
 
     .catch(e=>{
         UIkit.notification('Oops, algo salio mal','primary');
-        window.isLoading = false;
-        console.error(e);
+        window.isLoading = false; console.error(e);
     })
 
 }
 
 function search(){
-    
-    const searchBar = $('input[type=search]');
+
     const search = new URLSearchParams();
-
+    const searchBar = $('input[type=search]');
     search.set('type',query.get('type')||'peliculas');
+
     addEvent(searchBar,'change',()=>{
+        setTimeout(()=>{
 
-        if( (/nfsw/i).test(searchBar.value) )
-            return window.location = '?type=porno';
-
-        search.set('filter',searchBar.value);
-        window.location = '?'+search.toString();
-
+            if( searchBar.value == "" ) return 0;
+            if( (/nfsw/i).test(searchBar.value) )
+                return window.location = '?type=porno';
+    
+            search.set('filter',searchBar.value);
+            window.location = '?'+search.toString();
+    
+        },1000);
     });
+
 }
 
 addEvent(window,'load',()=>{ loadMore(); search(); });

@@ -21,7 +21,7 @@ module.exports = async(req,res)=>{
             }}); 
             const {data} = await fetch.get(`http://localhost:27017/match${search}`);
             data.map((x)=>{ resp.push(`<li>
-                    <a href="?type=${filter[i]}&filter=${x.nombre}">
+                    <a onclick="show(this)" type="${filter[i]}" hash="${x.hash}">
                         <span class="uk-badge uk-primary uk-enphasis">${filter[i]}</span> 
                     ${x.nombre}</a>
                 </li>`); 
@@ -38,7 +38,7 @@ module.exports = async(req,res)=>{
 
         const {data} = await fetch.get(`http://localhost:27017/match${search}`);
         data.map((x)=>{ resp.push(`<li>
-                <a href="?type=${req.query.type}&filter=${x.nombre}">
+                <a onclick="show(this)" type="${req.query.type}" hash="${x.hash}">
                     <span class="uk-badge uk-primary uk-enphasis">${req.query.type}</span>
                 ${x.nombre}</a>
             </li>`); 

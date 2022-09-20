@@ -39,14 +39,15 @@ module.exports = async(req,res)=>{
             const temp = typeof x.magnet == 'string' ? '' : `
                 <span class="uk-badge uk-primary uk-enphasis"> ${x.magnet.length}Temp </span>  
             `; return `
-                <a onclick="show(this)" hash="${x.hash}" id="movie" class="uk-inline uk-child-width-expand uk-height-medium">
+                <a onclick="show(this)" type="${args[0]}" hash="${x.hash}" id="movie" class="uk-inline uk-child-width-expand uk-height-medium">
                     <img class="uk-rounded" src="./img/placeholder.webp" lazy="${x.imagen}" alt="${x.nombre}">
                     <div class=" uk-position-top-left uk-position-small">
                         <span class="uk-badge uk-primary uk-enphasis"> ${type} </span> ${temp} 
                     </div> 
-                </a>`;
+                </a>
+            `;
 
         }).join('|'); res.send(200,resp);
 
-    } catch(e) { console.log(e); res.send(404,''); }
+    } catch(e) { console.log(e); res.send(404,e?.message) }
 };
