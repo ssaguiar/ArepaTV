@@ -42,18 +42,22 @@ function app(req,res){
         
         const _prt = q?.prot || 'https';
         const _url = `${_prt}://${q.href}`;
-        const protocol = (/https/gi).test(_url) ? https : http;
     
         const options = new Object();
+        
               options.url = _url;
               options.method = 'GET';
               options.responseType = 'stream';
+
               options.headers = { referer: _url,
                   'sec-ch-ua': req.headers['sec-ch-ua'] || defaultHeader['sec-ch-ua'],
                   'user-agent': req.headers['user-agent'] || defaultHeader['user-agent'],
                   'sec-ch-ua-mobile': req.headers['sec-ch-ua-mobile'] || defaultHeader['sec-ch-ua-mobile'],
                   'sec-ch-ua-platform': req.headers['sec-ch-ua-platform'] || defaultHeader['sec-ch-ua-platform'],
-              };  options.agent = new protocol.Agent({ rejectUnauthorized: false });
+              };  
+              
+              options.httpAgent = new http.Agent({ rejectUnauthorized: false });
+              options.httpsAgent = new https.Agent({ rejectUnauthorized: false });
     
         if( req.headers.range ) options.headers.range = parseRange(req.headers.range);
 
